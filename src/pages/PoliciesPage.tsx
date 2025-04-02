@@ -5,6 +5,7 @@ import PolicyStats from '../components/policies/PolicyStats';
 import { PolicyCard } from '../components/policies/PolicyCard';
 import PolicyFilters from '../components/policies/PolicyFilters';
 import { EmptyState } from '../components/ui/EmptyState';
+import { PolicyChart } from '../components/policies/PolicyChart';
 
 export const PoliciesPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -23,8 +24,8 @@ export const PoliciesPage = () => {
     });
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 overflow-x-hidden"> {/* Added overflow-x-hidden */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full"> {/* Added w-full */}
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Policy Governance</h1>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -59,11 +60,16 @@ export const PoliciesPage = () => {
                             description="Try adjusting your search or filters"
                         />
                     ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full"> {/* Changed md to sm and added w-full */}
-                            {filteredPolicies?.map((policy: any) => (
-                                <PolicyCard key={policy['Resource ID']} policy={policy} />
-                            ))}
-                        </div>
+                        <>
+                            <div className="w-full mb-8 min-h-[300px]">
+                                <PolicyChart policies={filteredPolicies} />
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+                                {filteredPolicies?.map((policy: any) => (
+                                    <PolicyCard key={policy['Resource ID']} policy={policy} />
+                                ))}
+                            </div>
+                        </>
                     )}
                 </div>
             </div>

@@ -4,6 +4,9 @@ import { Policy } from '../../services/policyService';
 import StatusBadge from '../ui/StatusBadge';
 import { FaBookOpen, FaCalendarAlt, FaFolder, FaTimes } from 'react-icons/fa';
 
+// Variants for card and content animations
+// These variants control the animation states for the card and content
+// when expanded or collapsed
 const cardVariants = {
     collapsed: {
         scale: 1,
@@ -21,6 +24,12 @@ const contentVariants = {
     expanded: { opacity: 1, height: "auto" }
 };
 
+/**
+ * PolicyCard component displays a policy card with expandable details.
+ * It uses Framer Motion for animations and Tailwind CSS for styling.
+ * @param param0 
+ * @returns 
+ */
 export const PolicyCard = ({ policy }: { policy: Policy }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const lastUpdated = policy['Last Modification Date']

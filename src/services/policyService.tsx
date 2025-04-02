@@ -9,7 +9,7 @@ export interface Policy {
   'Creation Date'?: string;
   'Last Modification Date'?: string;
   'Location'?: string;
-  // Add other fields as needed
+  
 }
 
 export const fetchPolicies = async (page = 1, pageSize = 100) => {
@@ -17,8 +17,10 @@ export const fetchPolicies = async (page = 1, pageSize = 100) => {
     params: {
       page,
       pageSize,
-      q: 'SELECT * FROM [Policy]' // Your OpenPages query
+      q: 'SELECT * FROM [Policy]'
     }
   });
+
+  console.debug('[API] Fetched policies:', JSON.stringify(response.data));
   return response.data;
 };

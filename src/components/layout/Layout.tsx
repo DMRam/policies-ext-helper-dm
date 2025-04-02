@@ -4,6 +4,8 @@ interface LayoutProps {
     children: ReactNode;
 }
 
+// Layout component for the application
+// This component wraps the main content of the application with a header and main section
 export const Layout = ({ children }: LayoutProps) => {
     return (
         <div className="min-h-screen bg-gray-50">
