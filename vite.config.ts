@@ -10,18 +10,20 @@ export default defineConfig({
     tailwindcss(),
 
     VitePWA({
-      registerType: "autoUpdate", // Auto-update when new content is available
       workbox: {
-        globPatterns: ["**/*.{js,css,html,json}"], // Cache all static assets
         runtimeCaching: [
           {
-            urlPattern: /\/api\/policies/, // Cache your OpenPages API calls
-            handler: "StaleWhileRevalidate", // Serve cached, update in background
+            urlPattern: /\/api\/policies/,
+            handler: "NetworkFirst",
             options: {
-              cacheName: "policies-cache",
+              cacheName: "api-cache",
+              networkTimeoutSeconds: 3, // Wait 3 seconds before using cache
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 24 * 60 * 60, // 24 hours
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
               },
             },
           },

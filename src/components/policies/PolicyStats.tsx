@@ -31,7 +31,7 @@ const calculateAverages = (policies: Policy[] = []) => {
 };
 
 export default function PolicyStats({ policies }: { policies: any[] }) {
-    const { approved, draft, other } = statusCounts(policies);
+    const { approved, draft } = statusCounts(policies);
     const avgReviewDays = calculateAverages(policies);
 
     return (
