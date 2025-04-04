@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    image: dannydev/policies-helper
+    ports:
+      - "5174:5173"
+      - "3001:3001"
+    environment:
+      - OPENPAGES_BASE_URL=https://XX.XXX.XXX.XXX:10111
+      - OPENPAGES_USERNAME=user
+      - OPENPAGES_PASSWORD=password
