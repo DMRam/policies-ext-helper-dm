@@ -3,12 +3,22 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// https://vite.dev/config/
+/**
+ * This is the Vite configuration file for a React application.
+ * It includes plugins for React, Tailwind CSS, and PWA (Progressive Web App - work offline) support.
+ * The configuration is set up to handle service workers and caching strategies.
+ */
 export default defineConfig({
+  build: {
+    outDir: "../dist",
+  },
+  server: {
+    host: true,
+    port: 5173
+  },
   plugins: [
     react(),
     tailwindcss(),
-
     VitePWA({
       workbox: {
         runtimeCaching: [
