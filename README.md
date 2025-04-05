@@ -1,131 +1,99 @@
 # 🛠️ Policies Helper DM
 
-A web tool that fetches policy data from OpenPages via a custom API and displays it in a Vite-powered React frontend.
+A complete OpenPages policy management tool with React frontend and Node.js backend.
 
-Includes:
+## 🌟 Features
 
-- 🔧 Backend: Node.js + Express
-- 🎨 Frontend: React + TypeScript + Vite
-- ✨ ESLint with recommended rules for type-safe linting
-- 🐳 Docker & Docker Compose support
-- 🌐 Ready for local development and Docker Hub deployment
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Node.js + Express API
+- **Dockerized**: Ready for development and production
+- **Code Quality**: Type-safe ESLint configuration
 
----
-Copy .env.example to .env
-cp .env.example .env 
+## 🚀 Quick Start (Production)
 
-run
-docker compose -f docker-compose.prod.yml up
-
-# Have Docker installed
-# Login to docker
-docker login
-# Download the image
-docker pull <username>/policy-helper:tagname
-# copy env variables
+```bash
+# 1. Copy environment file
 cp .env.example .env
 
-# replace
-OPENPAGES_BASE_URL=https://your-openpages-url.com
-OPENPAGES_USERNAME=your-username
-OPENPAGES_PASSWORD=your-password
+# 2. Edit with your credentials (OPENPAGES_BASE_URL, USERNAME, PASSWORD)
+nano .env
 
+# 3. Start the application
+docker compose -f docker-compose.prod.yml up
+```
 
+### Access:
 
-# Run the App Using Docker 
-docker run -p 5174:5173 -p 3001:3001 --env-file .env <your-docker-username>/policy-helper:tagname
+- Frontend: [http://localhost:5174](http://localhost:5174)
+- Backend: [http://localhost:3001](http://localhost:3001)
 
+## 🧪 Development Mode
 
-Frontend: http://localhost:5174
-Backend: http://localhost:3001
-
-
-## 🚀 Run Locally (Dev Mode)
-
-### 1. Clone the Repository
-
-git clone https://github.com/your-username/policies-helper.git
+```bash
+# 1. Clone and setup
+git clone https://github.com/dmram/policies-helper.git
 cd policies-helper
-
-
-2. Copy and Edit the Environment Variables
-
 cp .env.example server/.env
-Update server/.env with your OpenPages credentials and base URL.
 
-3. Start the Project with Docker Compose
+# 2. Start development environment
 docker compose -f docker-compose.dev.yml up
-Frontend: http://localhost:5174
-Backend: http://localhost:3001
-📦 Run from Docker Hub (Production)
+```
 
-You can run the app using a prebuilt image from Docker Hub.
+## 📦 Docker Hub Deployment
 
-1. Create an .env File
-cp .env.example .env
-Fill it in with your real OpenPages credentials and URL.
+```bash
+# Pull and run the pre-built image
+docker pull dmram/policies-helper:latest
 
-2. Start with Docker Compose
-docker compose -f docker-compose.prod.yml up
-⚙️ Environment Variables
+docker run -d \
+  -p 5174:5173 \  # Maps container's Vite dev server (5173) to host port 5174
+  -p 3001:3001 \
+  --env-file .env \
+  dmram/policies-helper:latest
+```
 
-These must be set either in a .env file or directly in your Docker Compose:
+## ⚙️ Configuration
 
-Variable	Description
-OPENPAGES_BASE_URL	Base URL of OpenPages (without /grc/api)
-OPENPAGES_USERNAME	Your OpenPages username
-OPENPAGES_PASSWORD	Your OpenPages password
+### Environment Variables
 
-This project uses Vite with React and TypeScript.
+| Variable             | Description                             |
+| -------------------- | --------------------------------------- |
+| `OPENPAGES_BASE_URL` | OpenPages base URL (without `/grc/api`) |
+| `OPENPAGES_USERNAME` | Your OpenPages username                 |
+| `OPENPAGES_PASSWORD` | Your OpenPages password                 |
 
-Two available plugins for React Fast Refresh:
-@vitejs/plugin-react (default, uses Babel)
-@vitejs/plugin-react-swc (optional, faster, uses SWC)
-🔍 ESLint Configuration (Recommended)
+## 🛠️ Technical Details
 
-To use type-aware linting with ESLint, use the following configuration:
+### ESLint Config (Flat Config - TypeScript)
 
+```js
 // eslint.config.js
 export default tseslint.config({
   extends: [
-    // Use recommended type-checked rules
     ...tseslint.configs.recommendedTypeChecked,
-    // Or go stricter
     ...tseslint.configs.strictTypeChecked,
-    // Optionally, add for style
     ...tseslint.configs.stylisticTypeChecked,
   ],
   languageOptions: {
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
+```
 
-✅ Requirements
-Docker & Docker Compose installed
-Docker Hub account (optional for sharing images)
+> 💡 Requires `@typescript-eslint` v6+ with flat config support.
 
+### Vite Plugins
 
-// eslint.config.js
-export default tseslint.config({
-  extends: [
-    // Use recommended type-checked rules
-    ...tseslint.configs.recommendedTypeChecked,
-    // Or go stricter
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add for style
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- `@vitejs/plugin-react` (Babel - default)
+- `@vitejs/plugin-react-swc` (SWC - faster alternative)
 
+## ✅ Requirements
 
-✨ Credits
-Built by Danny Munoz
+- Docker & Docker Compose
+- Node.js (for development mode)
+
+## ✨ Credits 
+**Danny Munoz**
