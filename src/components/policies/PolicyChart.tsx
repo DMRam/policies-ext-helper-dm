@@ -1,7 +1,6 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { Policy } from '../../services/policyService';
 
-export const PolicyChart = ({ policies }: { policies: Policy[] }) => {
+export const PolicyChart = ({ policies }: { policies: any[] }) => {
     const statusData = [
         { name: 'Approved', value: policies.filter(p => p['OPSS-Pol:Approval Status']?.includes('Approved')).length },
         { name: 'Draft', value: policies.filter(p => p['OPSS-Pol:Approval Status']?.includes('Draft')).length },

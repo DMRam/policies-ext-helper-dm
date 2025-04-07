@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchPolicies } from '../services/policyService';
-import { PolicyResponse } from '../types/policy';
 
 /**
  * Custom hook to fetch policies with React Query caching and localStorage persistence

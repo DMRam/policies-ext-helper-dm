@@ -1,7 +1,6 @@
 import { FaChartBar, FaCheckCircle, FaFileAlt, FaClock } from "react-icons/fa";
-import { Policy } from '../../services/policyService';
 
-const statusCounts = (policies: Policy[] = []) => {
+const statusCounts = (policies: any[] = []) => {
     return policies.reduce((acc, policy) => {
         const status = policy['OPSS-Pol:Approval Status'];
         if (status?.includes('Approved')) {
@@ -15,7 +14,7 @@ const statusCounts = (policies: Policy[] = []) => {
     }, { approved: 0, draft: 0, other: 0 });
 };
 
-const calculateAverages = (policies: Policy[] = []) => {
+const calculateAverages = (policies: any[] = []) => {
     if (!policies.length) return 0;
 
     const totalDays = policies.reduce((sum, policy) => {
