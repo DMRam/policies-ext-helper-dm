@@ -1,15 +1,14 @@
-# 🛠️ Policies Helper DM
+# Policies Helper DM
 
 A complete OpenPages policy management tool with React frontend and Node.js backend.
 
-## 🌟 Features
+## Features
 
 - **Frontend**: React + TypeScript + Vite
 - **Backend**: Node.js + Express API
 - **Dockerized**: Ready for development and production
-- **Code Quality**: Type-safe ESLint configuration
 
-## 🚀 Quick Start (Production)
+## Quick Start (Production)
 
 ```bash
 # 1. Copy environment file
@@ -27,7 +26,7 @@ docker compose -f docker-compose.prod.yml up
 - Frontend: [http://localhost:5174](http://localhost:5174)
 - Backend: [http://localhost:3001](http://localhost:3001)
 
-## 🧪 Development Mode
+## Development Mode
 
 ```bash
 # 1. Clone and setup
@@ -52,7 +51,7 @@ docker run -d \
   dmram/policies-helper:latest
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -62,38 +61,15 @@ docker run -d \
 | `OPENPAGES_USERNAME` | Your OpenPages username                 |
 | `OPENPAGES_PASSWORD` | Your OpenPages password                 |
 
-## 🛠️ Technical Details
-
-### ESLint Config (Flat Config - TypeScript)
-
-```js
-// eslint.config.js
-export default tseslint.config({
-  extends: [
-    ...tseslint.configs.recommendedTypeChecked,
-    ...tseslint.configs.strictTypeChecked,
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
 ```
-
-> 💡 Requires `@typescript-eslint` v6+ with flat config support.
-
 ### Vite Plugins
-
 - `@vitejs/plugin-react` (Babel - default)
 - `@vitejs/plugin-react-swc` (SWC - faster alternative)
 
-## ✅ Requirements
+## Requirements
 
 - Docker & Docker Compose
 - Node.js (for development mode)
 
-## ✨ Credits 
+## Credits 
 **Danny Munoz**

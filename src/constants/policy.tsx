@@ -1,33 +1,39 @@
-import {
-    FaCheckCircle,
-    FaFileAlt,
-    FaClock,
-    FaExclamationTriangle
-} from 'react-icons/fa';
+// interfaces/policy.ts
+export interface PolicyResponse {
+    links: Link[];
+    rows: PolicyRow[];
+}
 
-export const statusOptions = [
-    {
-        value: 'Approved',
-        label: 'Approved',
-        icon: FaCheckCircle,
-        color: 'text-emerald-500'
-    },
-    {
-        value: 'Draft',
-        label: 'Draft',
-        icon: FaFileAlt,
-        color: 'text-amber-500'
-    },
-    {
-        value: 'Pending',
-        label: 'Pending',
-        icon: FaClock,
-        color: 'text-blue-500'
-    },
-    {
-        value: 'Rejected',
-        label: 'Rejected',
-        icon: FaExclamationTriangle,
-        color: 'text-red-500'
-    }
-];
+export interface Link {
+    rel: string;
+    href: string;
+    type?: string;
+}
+
+export interface PolicyRow {
+    fields: {
+        field: PolicyField[];
+    };
+}
+
+export interface PolicyField {
+    id: string;
+    dataType: string;
+    name: string;
+    hasChanged: boolean;
+    value?: string | number | boolean;
+    enumValue?: EnumValue;
+}
+
+export interface EnumValue {
+    id: string;
+    name: string;
+    localizedLabel: string;
+    index: number;
+    hidden: boolean;
+}
+
+// Utility type to extract field values by name
+export type PolicyData = {
+    [key: string]: string | number | boolean | undefined;
+};

@@ -1,40 +1,31 @@
-export interface Policy {
-    LastModifiedDate: string;
-    id: string;
-    Name?: string;
-    Description?: string;
-    Status?: string;
-    // Add other fields you expect from the API
+export interface PolicyResponse {
+  links: Link[];
+  rows: PolicyRow[];
 }
 
-export interface PolicyApiResponse {
-    links: Array<{
-        rel: string;
-        href: string;
-        type?: string;
-    }>;
-    rows: PolicyRow[];
+interface Link {
+  rel: string;
+  href: string;
+  type?: string;
 }
 
-export interface PolicyField {
-    id: string;
-    dataType: string;
-    name: string;
-    hasChanged: boolean;
-    value?: any;
-    enumValue?: {
+interface PolicyRow {
+  fields: {
+      field: PolicyField[];
+  };
+}
+
+interface PolicyField {
+  id: string;
+  dataType: string;
+  name: string;
+  hasChanged: boolean;
+  value?: string | number | boolean;
+  enumValue?: {
       id: string;
       name: string;
       localizedLabel: string;
       index: number;
       hidden: boolean;
-    };
-  }
-  
-  export interface PolicyRow {
-    fields: {
-      field: PolicyField[];
-    };
-  }
-  
-  // Removed duplicate declaration of PolicyApiResponse
+  };
+}
