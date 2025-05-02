@@ -1,4 +1,9 @@
 {
+  "openpages": {
+    "baseUrl": "https://192.168.2.20:10111",
+    "username": "OpenPagesAdministrator",
+    "password": "passw0rd"
+  },
   "query": "SELECT * FROM [Policy]",
   "fields": [
     { "name": "Policy Name", "label": "Title", "visible": true },
@@ -14,4 +19,3 @@
     "fontFamily": "Roboto, sans-serif"
   }
 }
-

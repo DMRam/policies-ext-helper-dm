@@ -10,66 +10,81 @@ A complete OpenPages policy management tool with React frontend and Node.js back
 
 ## Quick Start (Production)
 
-```bash
-# 1. Copy environment file
-cp .env.example .env
+1. **Copy the configuration file:**
 
-# 2. Edit with your credentials (OPENPAGES_BASE_URL, USERNAME, PASSWORD)
-nano .env
+   ```bash
+   cp config.example.json config.json
 
-# 3. Start the application
+2. **Edit the config.json with your credentials and query:**
+{
+  "openpages": {
+    "baseUrl": "https://your-openpages-url",
+    "username": "your-username",
+    "password": "your-password"
+  },
+  "query": "SELECT * FROM [Policy]",
+  "fields": [
+    { "name": "Policy Name", "label": "Title", "visible": true },
+    { "name": "OPSS-Pol:Approval Status", "label": "Status", "visible": true },
+    { "name": "OPSS-Pol:Published Date", "label": "Published On", "visible": true }
+  ],
+  "theme": {
+    "primaryColor": "#1e90ff",
+    "fontFamily": "Roboto, sans-serif"
+  }
+}
+
+3. **Start the application:**
 docker compose -f docker-compose.prod.yml up
-```
-
-### Access:
-
-- Frontend: [http://localhost:5174](http://localhost:5174)
-- Backend: [http://localhost:3001](http://localhost:3001)
+Access:
+Frontend: http://localhost:5174
+Backend: http://localhost:3001
 
 ## Development Mode
 
-```bash
-# 1. Clone and setup
+1. **Clone and set up the project:**
 git clone https://github.com/dmram/policies-helper.git
 cd policies-helper
-cp .env.example server/.env
+cp config.example.json server/config.json
 
-# 2. Start development environment
+2. **Start the development environment:**
 docker compose -f docker-compose.dev.yml up
-```
 
-## 📦 Docker Hub Deployment
-
-```bash
-# Pull and run the pre-built image
+## Docker Hub Deployment
+1. **Pull and run the pre-built image:**
 docker pull dmram/policies-helper:latest
 
+2. **Run the Docker container:**
 docker run -d \
   -p 5174:5173 \  # Maps container's Vite dev server (5173) to host port 5174
   -p 3001:3001 \
-  --env-file .env \
+  -v /path/to/your/config.json:/app/config/config.json \  # Mount your config.json
   dmram/policies-helper:latest
-```
 
 ## Configuration
 
-### Environment Variables
+Configuration File
+Create and update the config.json file in the root directory of the project. This file includes your OpenPages credentials, query, and theme configuration.
 
-| Variable             | Description                             |
-| -------------------- | --------------------------------------- |
-| `OPENPAGES_BASE_URL` | OpenPages base URL (without `/grc/api`) |
-| `OPENPAGES_USERNAME` | Your OpenPages username                 |
-| `OPENPAGES_PASSWORD` | Your OpenPages password                 |
-
-```
-### Vite Plugins
-- `@vitejs/plugin-react` (Babel - default)
-- `@vitejs/plugin-react-swc` (SWC - faster alternative)
-
+config.json Example:
+{
+  "openpages": {
+    "baseUrl": "https://your-openpages-url",
+    "username": "your-username",
+    "password": "your-password"
+  },
+  "query": "SELECT * FROM [Policy]",
+  "fields": [
+    { "name": "Policy Name", "label": "Title", "visible": true },
+    { "name": "OPSS-Pol:Approval Status", "label": "Status", "visible": true },
+    { "name": "OPSS-Pol:Published Date", "label": "Published On", "visible": true }
+  ],
+  "theme": {
+    "primaryColor": "#1e90ff",
+    "fontFamily": "Roboto, sans-serif"
+  }
+}
 ## Requirements
 
-- Docker & Docker Compose
-- Node.js (for development mode)
-
-## Credits 
-**Danny Munoz**
+Docker & Docker Compose
+Node.js (for development mode)

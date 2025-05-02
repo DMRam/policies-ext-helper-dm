@@ -19,6 +19,10 @@ try {
   process.exit(1);
 }
 
+const baseUrl = appConfig.openpages.baseUrl;
+const username = appConfig.openpages.username;
+const password = appConfig.openpages.password;
+
 // Initialize Express app
 const app = express();
 const port = process.env.PORT || 5000;
@@ -40,10 +44,10 @@ const agent = new https.Agent({
 
 // ========== AXIOS CLIENT ========== //
 const apiClient = axios.create({
-  baseURL: `${process.env.OPENPAGES_BASE_URL}/grc/api`,
+  baseURL: `${baseUrl || process.env.OPENPAGES_BASE_URL}/grc/api`,
   auth: {
-    username: process.env.OPENPAGES_USERNAME,
-    password: process.env.OPENPAGES_PASSWORD,
+    username: username || process.env.OPENPAGES_USERNAME,
+    password: password || process.env.OPENPAGES_PASSWORD,
   },
   httpsAgent: agent,
 });
