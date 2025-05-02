@@ -1,4 +1,4 @@
-import { apiClient } from '../api/client';
+import apiClient from '../api/client';
 
 export const fetchPolicies = async (page = 1, pageSize = 100) => {
   const response = await apiClient.get('/api/policies', {

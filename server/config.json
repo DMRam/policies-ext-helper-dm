@@ -1,0 +1,17 @@
+{
+  "query": "SELECT * FROM [Policy]",
+  "fields": [
+    { "name": "Policy Name", "label": "Title", "visible": true },
+    { "name": "OPSS-Pol:Approval Status", "label": "Status", "visible": true },
+    {
+      "name": "OPSS-Pol:Published Date",
+      "label": "Published On",
+      "visible": true
+    }
+  ],
+  "theme": {
+    "primaryColor": "#1e90ff",
+    "fontFamily": "Roboto, sans-serif"
+  }
+}
+

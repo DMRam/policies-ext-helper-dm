@@ -3,11 +3,11 @@ services:
   app:
     build: .
     ports:
-      - "5174:5173"    # Vite frontend (React)
-      - "3001:3001"    # Node.js backend
-    volumes:
-      - .:/app         
-      - /app/node_modules
-    command: npm run dev
+      - "5174:5000"  # Map port 5000 in the container to 5174 on your host
     env_file:
-      - ./server/.env  # Local Variables for development
+      - .env  # Pass the .env file to the container
+    volumes:
+      - ./server:/app/server  # Mount server files (if needed for dev purposes)
+      - ./config/config.json:/app/config/config.json
+      - ./server/.env:/app/server/.env
+    command: npm start  # Use npm start to run the server

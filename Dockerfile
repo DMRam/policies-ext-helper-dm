@@ -1,23 +1,31 @@
-# Use Node.js base image
-FROM node:18
-
-# Set working directory
+# Build stage for frontend (Vite)
+FROM node:20 AS build-stage
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# Copy the server's .env file
-COPY server/.env ./server/.env
-
-# Install all dependencies, including dev dependencies like nodemon
 RUN npm install
 
-# Copy the rest of the app's source code
+# Copy all files for the frontend build
 COPY . .
 
-# Expose the necessary port
-EXPOSE 5173
+# Build the frontend
+RUN npm run build
 
-# Command to run the app
-CMD ["npm", "run", "dev"]
+# Production stage for the backend
+FROM node:20
+WORKDIR /app
+
+# Copy built frontend into the production image
+COPY --from=build-stage /app/dist ./dist
+
+# Copy server files
+COPY server ./server
+COPY package*.json ./
+RUN npm install --production
+
+# Expose port 5000
+EXPOSE 5000
+
+# Command to start the server in production mode
+CMD ["npm", "run", "serve"]
