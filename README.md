@@ -1,6 +1,6 @@
 # Policies Helper DM
 
-A complete OpenPages policy management tool with React frontend and Node.js backend.
+OpenPages policy management helper with React frontend and Node.js backend.
 
 ## Features
 
@@ -8,14 +8,12 @@ A complete OpenPages policy management tool with React frontend and Node.js back
 - **Backend**: Node.js + Express API
 - **Dockerized**: Ready for development and production
 
-## Quick Start (Production)
-
 1. **Copy the configuration file:**
 
    ```bash
    cp config.example.json config.json
 
-2. **Edit the config.json with your credentials and query:**
+2. **Edit the config.json with credentials and query:**
 {
   "openpages": {
     "baseUrl": "https://your-openpages-url",
@@ -63,9 +61,7 @@ docker run -d \
 
 ## Configuration
 
-Configuration File
-Create and update the config.json file in the root directory of the project. This file includes your OpenPages credentials, query, and theme configuration.
-
+# Configuration File
 config.json Example:
 {
   "openpages": {
